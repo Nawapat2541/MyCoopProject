@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="userAllReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0ce31a8-55bb-4685-8ddc-9d76189454a3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoPath" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{Parameter1}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM holiday WHERE year(start_date) = $P{Parameter1} || $P{Parameter1} = 'All']]>
+	</queryString>
+	<field name="start_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="end_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="head" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="301" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="13" width="146" height="40" uuid="b6555020-345a-49ea-b2d7-c524dc5591d3"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="202" y="0" width="352" height="50" forecolor="#000000" uuid="7e1ccfea-e8a4-414c-9563-212af2700f4c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[ SoftTech Co., Ltd.
+160/170-2, 12A Fl., ITF Silom Palace Building
+Silom Rd. Suriyawong, Bangrak, Bangkok 10500, Thailand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="9" width="33" height="16" forecolor="#FF0000" uuid="ba80c6e2-a2c9-4f2f-83fa-78304874b161"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Cube]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="86" width="340" height="68" isPrintWhenDetailOverflows="true" uuid="98da58a9-3253-4c4e-b5e6-7764cead838b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="38" isBold="true" isItalic="false" isStrikeThrough="false" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph tabStopWidth="400"/>
+				</textElement>
+				<text><![CDATA[วันหยุดประจำปี]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="120" width="377" height="76" isPrintWhenDetailOverflows="true" uuid="efc8db4d-4915-4be2-acfa-8a529ff4b3c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="38" isBold="true" isItalic="false" isStrikeThrough="false" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph tabStopWidth="400"/>
+				</textElement>
+				<text><![CDATA[(Annual Holidays)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="220" width="147" height="40" uuid="51e30aec-2b1f-4cbc-ba6f-2414f325dc48"/>
+				<textElement textAlignment="Left">
+					<font size="16" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วันหยุดประจำปีที่ : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="329" y="220" width="160" height="30" uuid="49448e13-4670-44c6-b723-7c1835c02e22"/>
+				<textElement textAlignment="Left">
+					<font size="16" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Parameter1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#BD2125" uuid="90320240-b597-497a-8e0f-afb5e90ec447"/>
+				<staticText>
+					<reportElement x="33" y="-1" width="82" height="26" forecolor="#FFFFFF" uuid="525a7651-6715-4bf7-b7d1-f21dfcf337ff"/>
+					<textElement>
+						<font size="18" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Start Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="-1" width="82" height="26" forecolor="#FFFFFF" uuid="431db0e4-f36d-498b-9c87-7c4a74ab86f2"/>
+					<textElement>
+						<font size="18" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[End Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="193" y="-1" width="50" height="26" forecolor="#FFFFFF" uuid="9200639b-01b3-4a0e-be06-81293e632660"/>
+					<textElement>
+						<font size="18" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="-2" width="90" height="26" forecolor="#FFFFFF" uuid="291421cb-e1fa-44fa-ab10-55425d12784c"/>
+					<textElement>
+						<font size="18" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<textField pattern="dd/mm/yyyy">
+				<reportElement positionType="Float" x="1" y="7" width="78" height="50" uuid="451453aa-04db-436a-808c-22742654dac6"/>
+				<textElement textAlignment="Center">
+					<font size="10" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{start_date}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/mm/yyyy">
+				<reportElement x="87" y="7" width="86" height="50" uuid="61d4200f-53b3-4951-bc81-00e3cb9a6d16"/>
+				<textElement>
+					<font size="10" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{end_date}))]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="56" width="555" height="1" uuid="f7a6f9fd-5276-459b-a025-11323d57222c"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="173" y="7" width="107" height="50" uuid="adbb3724-6ea2-48b1-a67f-7eac64e9e144"/>
+				<textElement>
+					<font size="10" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{head}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="6" width="275" height="50" uuid="ab4cd630-7176-46f0-b184-bc04665a4269"/>
+				<textElement>
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="8" width="555" height="39" uuid="f2eb3e7d-a21f-438d-80a1-94ae4871305d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cube SoftTech Co., Ltd.]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy HH:mm">
+				<reportElement x="1" y="8" width="122" height="39" uuid="fbaf0963-8610-4249-af3b-cc19f47525bd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="18" width="555" height="1" forecolor="#CCCCCC" backcolor="#FFFFFF" uuid="eec1646a-9d32-402e-b191-d8a0b19c25c7"/>
+			</line>
+			<textField>
+				<reportElement x="455" y="19" width="71" height="20" uuid="259983d6-1d81-495b-bd31-5b58a38da079"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="535" y="19" width="31" height="20" uuid="f3d6a1a8-4fac-4ec4-b09b-1f68f774c640"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

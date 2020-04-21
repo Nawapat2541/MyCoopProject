@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="userAllReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0ce31a8-55bb-4685-8ddc-9d76189454a3">
+	<property name="ireport.zoom" value="1.8181818181818217"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="251"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoPath" class="java.lang.Object" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT id,name,email,phone_num,work_time_start AS Tstart,work_time_end AS Tend FROM user WHERE enable=1]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="phone_num" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tstart" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tend" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="29" width="454" height="41" uuid="e62501cf-4958-4f7a-bb8b-fa7baa1a1f5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="22" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[สวัสดี User (All User)]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="140" height="28" uuid="b6555020-345a-49ea-b2d7-c524dc5591d3"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="2" width="74" height="20" uuid="5c9fe3d5-a825-48a8-aac3-0d2fe8a42cf5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="1" width="74" height="20" uuid="5c9fe3d5-a825-48a8-aac3-0d2fe8a42cf5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="2" width="74" height="20" uuid="80070ba2-837d-48b5-8100-9f200e53d958"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="1" width="74" height="20" uuid="906a3b36-77b9-42f2-8fd8-f0d8e86bcd26"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[PhoneNumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="1" width="90" height="20" uuid="188949c6-6c91-40fb-9d47-edfbed796c24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[workhourTimework]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="2c4b7c0b-9502-4b41-9ee6-e1e3b2b40d9b"/>
+			</line>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="d7e1bf16-34ac-4a60-a6f2-43a2231afeb9"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1" y="2" width="74" height="20" uuid="5c9fe3d5-a825-48a8-aac3-0d2fe8a42cf5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="85" y="1" width="114" height="20" uuid="61d4200f-53b3-4951-bc81-00e3cb9a6d16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="160" height="20" uuid="61d4200f-53b3-4951-bc81-00e3cb9a6d16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="f7a6f9fd-5276-459b-a025-11323d57222c"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="380" y="0" width="85" height="20" uuid="dd570663-c087-474e-809f-2b88c1129464"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phone_num}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="465" y="0" width="110" height="20" uuid="137ad7fb-c07d-4e64-8d2e-0ba72207206f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tstart} +" ~ "+ $F{Tend}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="leaveForm" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fea2bc9-133d-451a-8005-833cdbf61b96">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="248"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logoPath" class="java.lang.Object" isForPrompting="false">
+		<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\app\\SIT\\REPORT\\IDP_STATUS\\logo.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="checkboxPath" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["C:\\app\\SIT\\REPORT\\IDP_STATUS\\checked_checkbox.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="unCheckboxPath" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["C:\\app\\SIT\\REPORT\\IDP_STATUS\\unchecked_checkbox.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="leaveId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT leaves.no_day,leaves.start_date,leaves.end_date,leaves.description,leaves.reason,leaves.leave_type_id,leaves.leave_status_id,leaves.time_create,us.name AS userName,us.role_id AS userRole
+,us.department_id AS userDepartment,us.email AS userEmail,us.phone_num AS userPhone,manager.name AS managerName ,manager.role_id as managerRole,lt.leave_type_name
+FROM leaves
+LEFT JOIN user us on leaves.user_id = us.id
+LEFT JOIN user manager on us.manager_id = manager.id
+LEFT JOIN leave_type lt on leaves.leave_type_id = lt.leave_type_id
+where leaves.leave_id = $P{leaveId};]]>
+	</queryString>
+	<field name="no_day" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="start_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="end_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reason" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="leave_type_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="leave_status_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time_create" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="userName" class="java.lang.String"/>
+	<field name="userRole" class="java.lang.String"/>
+	<field name="userDepartment" class="java.lang.String"/>
+	<field name="userEmail" class="java.lang.String"/>
+	<field name="userPhone" class="java.lang.String"/>
+	<field name="managerName" class="java.lang.String"/>
+	<field name="managerRole" class="java.lang.String"/>
+	<field name="leave_type_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="396" y="6" width="135" height="34" uuid="27a17d18-39f9-4013-bcc4-d613bffdf4c1"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="40" width="555" height="36" isPrintWhenDetailOverflows="true" uuid="be9586a3-fd32-46e8-adb7-0da26912ae3e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="26" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph tabStopWidth="400"/>
+				</textElement>
+				<text><![CDATA[ใบลา(Leave Form)]]></text>
+			</staticText>
+			<textField pattern="dd/mm/yyyy">
+				<reportElement x="449" y="52" width="191" height="27" uuid="107ebccc-a89d-49d8-a3c0-b297cd539c60"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["วันที่ "+(new SimpleDateFormat("dd/MM/yyyy").format($F{time_create}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<textField>
+				<reportElement x="114" y="18" width="202" height="25" uuid="e7978c73-7189-44df-a061-6dd5d9b8d3a0"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="18" width="132" height="25" uuid="7adc4deb-bc15-446b-8874-ea8c756d5fb5"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userRole}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="44" width="202" height="20" uuid="5836ed25-6655-4e3f-a4cc-8abdd3f476ae"/>
+				<textElement textAlignment="Justified">
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userDepartment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="18" width="153" height="26" uuid="d7cba2fd-deb1-445a-975e-cd5a95be9dba"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ชื่อ-นามสกุล]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="18" width="93" height="26" uuid="4553c7d8-323a-4b67-a6b5-0f1dd7784052"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ตำแหน่ง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="44" width="83" height="20" uuid="7c21b751-83b9-498c-86cb-bf60cf847619"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[แผนก]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<line>
+				<reportElement x="30" y="20" width="501" height="1" uuid="8ca0ffa8-67f2-4a79-9eb2-fd4cd24cdab6"/>
+			</line>
+			<textField>
+				<reportElement x="85" y="24" width="443" height="20" uuid="93533d24-ec4d-4d4d-b5cc-603834364964"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_type_name}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="45" y="29" width="15" height="15" uuid="84fc675a-309b-4afa-bad5-e8a255925d6e"/>
+				<imageExpression><![CDATA[$P{checkboxPath}]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="389" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="20" width="121" height="20" uuid="16224d8f-d5fc-4a79-868e-f494f8d82a80"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{start_date}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="20" width="116" height="20" uuid="8d3b3853-cbba-44ca-888e-54c4f47cae88"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{end_date}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="20" width="32" height="20" uuid="7ec6201b-8ab8-4d86-a125-6a50f6c9ae80"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_day}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="40" width="649" height="80" uuid="053f3848-5332-4976-b252-404ebd6f94da"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["เหตุผลการลา    "+$F{description}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="169" y="162" width="15" height="15" uuid="72a397ee-f482-4abf-9330-411943f7709a"/>
+				<imageExpression><![CDATA[$F{leave_status_id}.equals("1") ? $P{checkboxPath} : $P{unCheckboxPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="190" y="159" width="68" height="20" uuid="1b61bee4-bbb5-4566-be9e-71fb07a6c840"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[อนุมัติ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="352" y="162" width="15" height="15" uuid="19df8714-8eb1-4bcf-9459-21ea50e582bf"/>
+				<imageExpression><![CDATA[$F{leave_status_id}.equals("2") ? $P{checkboxPath} : $P{unCheckboxPath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="372" y="159" width="97" height="20" uuid="934bcb98-64f4-4a9a-b613-8fea73b1adbc"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ไม่อนุมัติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="180" width="491" height="20" uuid="3fe92a82-cb31-4539-baa7-ec6fdb2b8e4a"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[เหตุผล]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="200" width="490" height="40" uuid="b16ae265-7aa8-4b0a-90ba-55cc03ad88a4"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_status_id}.equals("2") || $F{leave_status_id}.equals("1")  ? $F{reason} : " "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="30" y="150" width="500" height="1" uuid="01e25269-4ca2-4868-94f7-4f4a74d8381f"/>
+			</line>
+			<line>
+				<reportElement x="30" y="248" width="501" height="1" uuid="aca3cb43-80c8-4f15-94c6-fb9a363562dc"/>
+			</line>
+			<line>
+				<reportElement x="286" y="248" width="1" height="140" uuid="849174c2-4c08-42d9-af8e-f93ff5b909bb"/>
+			</line>
+			<textField>
+				<reportElement x="31" y="300" width="249" height="20" uuid="5ffe4018-0eb9-4147-8b69-2883425d402d"/>
+				<textElement textAlignment="Center">
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( "+$F{userName}+" )"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="340" width="100" height="20" uuid="643618e5-d0d1-401d-b84e-d8fe401635ff"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="363" width="100" height="20" uuid="26554001-aac1-43e1-9c2d-15ff41d0a178"/>
+				<textElement textAlignment="Center">
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ผู้ขออนุมัติ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="369" y="340" width="100" height="20" uuid="10529de3-cae4-41a7-a402-7cc2a5deaddb"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="333" y="363" width="100" height="20" uuid="a1e5fabb-42e3-40c1-bfba-c926a17e542a"/>
+				<textElement textAlignment="Center">
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ผู้อนุมัติ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="30" y="388" width="501" height="1" uuid="798cc738-4455-435e-9f51-ed7d6fd21647"/>
+			</line>
+			<line>
+				<reportElement x="530" y="-24" width="1" height="413" uuid="9676b0d1-8584-4e13-a570-be2fea3edf26"/>
+			</line>
+			<line>
+				<reportElement x="30" y="-24" width="1" height="413" uuid="7476e416-9242-4f5a-abc6-caaceb8576ae"/>
+			</line>
+			<staticText>
+				<reportElement x="41" y="20" width="73" height="20" uuid="f7ab56e4-a056-4224-a964-12b6e06e8583"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ตั้งแต่วันที่]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="20" width="84" height="20" uuid="fddaa9e6-67a9-4fd9-9ac6-8415a489b68f"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ถึงวันที่]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="20" width="73" height="20" uuid="5fd3979a-2a7f-4076-b8b8-7c4c15a98121"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[มีกำหนด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="20" width="47" height="20" uuid="8d4f2db8-c9bc-4136-8e42-19f74b474986"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วัน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="340" width="39" height="20" uuid="9bcbcc1e-8675-4b97-8a58-42a092dfc716"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วันที่]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="340" width="39" height="20" uuid="3aa638af-f86c-47b0-8340-40a14409a74f"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วันที่]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="287" y="300" width="262" height="20" uuid="a70c308e-b5b1-4fb6-a0e3-782f09dd2bbd"/>
+				<textElement textAlignment="Center">
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( " +$F{managerName}+ " )"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="270" width="71" height="20" uuid="2ce0c2b9-378c-4965-9884-3574b991bd89"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="320" width="84" height="20" uuid="2adbe94d-adb8-4a3f-b985-18cb08b82065"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(ตำแหน่ง)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="121" y="320" width="160" height="20" uuid="5ffe4018-0eb9-4147-8b69-2883425d402d"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userRole}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="311" y="320" width="84" height="20" uuid="06552e1d-7b0c-4463-bb75-dea56eb3c052"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(ตำแหน่ง)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="369" y="320" width="160" height="20" uuid="d3570e2d-a095-4a55-88de-45ca2cfb181c"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{managerRole}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="31" y="10" width="500" height="1" uuid="0d43eedd-ba40-4721-b96c-eb80543ffd81"/>
+			</line>
+			<line>
+				<reportElement x="30" y="10" width="501" height="1" uuid="e4855765-9c6f-478d-8e0e-ec122f2dbefa"/>
+			</line>
+			<textField>
+				<reportElement x="42" y="110" width="585" height="20" uuid="053f3848-5332-4976-b252-404ebd6f94da"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ติดต่อข้าพเจ้าได้ที่    " +$F{userEmail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="110" width="233" height="20" uuid="053f3848-5332-4976-b252-404ebd6f94da"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["โทรศัพท์    " +$F{userPhone}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="87" y="290" width="171" height="1" uuid="c6a0d8cd-614e-400a-8874-4ae929efbe02"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="305" y="270" width="71" height="20" uuid="f199d9c6-990c-42ee-8eae-f669a2c33511"/>
+				<textElement>
+					<font size="14" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[(ลงชื่อ) ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="334" y="290" width="171" height="1" uuid="c2c070ca-6f65-428d-bc7a-8b8ea781c289"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="0" width="459" height="124" uuid="d79ddfe6-ad46-4394-a260-0be2476591be"/>
+				<textElement>
+					<font size="14" isUnderline="false" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[- กรณีลาป่วย กรุณาแนบใบรับรองแพทย์พร้อมเอกสารการลาให้กับผู้บังคับบัญชา เพื่อขออนุมัติ
+- กรณีลาพักร้อน ยื่นเอกสารล่วงหน้าเพื่อขออนุมัติอย่างน้อย 1 สัปดาห์ สิทธิในการอนุมัติขึ้นอยู่กับผู้บังคับบัญชา                                                        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="0" width="90" height="20" uuid="cb6ceacb-8f49-4266-900f-936af8f6831d"/>
+				<textElement>
+					<font size="14" isUnderline="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[หมายเหตุ ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="500" height="54" uuid="7dd6c0f5-af0d-4e0a-951e-4a3981903b6a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="THSarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cube SoftTech Co., Ltd.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

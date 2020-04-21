@@ -1,0 +1,2203 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="Authorization" namespace="/" extends="default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="authorization"
+			class="com.cubesofttech.action.LoginAction" method="login">
+			<result name="success" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+			<result name="error">/index.jsp</result>
+			<result name="input" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+		</action>
+
+		<action name="logout"
+			class="com.cubesofttech.action.LoginAction" method="logout">
+			<result name="success">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="forgetPassword"
+			class="com.cubesofttech.action.LoginAction" method="forgetPassword">
+			<result name="success">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+	</package>
+
+	<package name="UserAction" namespace="/"
+		extends="default, json-default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="user_noti"
+			class="com.cubesofttech.action.UserAction" method="user_notifi">
+			<result name="success" type="tiles">user.add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="check_email"
+			class="com.cubesofttech.action.LoginAction" method="forgetPassword">
+		</action>
+
+		<action name="" class="com.cubesofttech.action.LoginAction"
+			method="forgetPassword">
+		</action>
+
+		<action name="Dashboard"
+			class="com.cubesofttech.action.NewsAction" method="dashList">
+			<result name="success" type="tiles">dashboard</result><!-- name from tiles -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="new_s" class="com.cubesofttech.action.NewsAction"
+			method="feedList">
+			<result name="success" type="tiles">new_s</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="comment_news"
+			class="com.cubesofttech.action.NewsAction" method="performEdit">
+			<result name="success" type="tiles">comment_news</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="plus_limit"
+			class="com.cubesofttech.action.NewsAction" method="moreFeedList">
+			<result name="success">/pages-back/dashboard/detail.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="calendar_event"
+			class="com.cubesofttech.action.NewsAction" method="feedList">
+			<result name="success" type="tiles">calendar_event</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="my_news"
+			class="com.cubesofttech.action.NewsAction" method="addNews">
+			<result name="success" type="tiles">my_news</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="delete_news"
+			class="com.cubesofttech.action.NewsAction" method="delete">
+			<result name="success" type="tiles">my_news</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="news_edit"
+			class="com.cubesofttech.action.NewsAction" method="performEdit">
+			<result name="success" type="tiles">news_edit
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="edit-newfeed"
+			class="com.cubesofttech.action.NewsAction" method="editNews">
+			<result name="success" type="redirectAction">new_s</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="save-newfeed"
+			class="com.cubesofttech.action.NewsAction" method="saveNewsFeed">
+			<result name="success" type="redirectAction">new_s?userId=${onlineUser.id}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="user-list-update"
+			class="com.cubesofttech.action.UserAction" method="listUpdate">
+			<result name="success">/pages-back/user/radio_user_list.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="update-user-status"
+			class="com.cubesofttech.action.UserAction" method="updateUserStatus">
+			<result name="json" >/pages-back/common/json.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="change-password"
+			class="com.cubesofttech.action.UserAction" method="openEdit">
+			<result name="success" type="tiles">change_password</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-list"
+			class="com.cubesofttech.action.UserAction" method="list">
+			<result name="success" type="tiles">user.list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-edit"
+			class="com.cubesofttech.action.UserAction" method="openEdit">
+			<result name="success" type="tiles">admin_edit_userprofile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-add"
+			class="com.cubesofttech.action.UserAction" method="open">
+			<result name="success" type="tiles">user.add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-edit-profile"
+			class="com.cubesofttech.action.UserAction" method="open_myprofile">
+			<result name="success" type="tiles">user.edit.profile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-perform-edit"
+			class="com.cubesofttech.action.UserAction" method="Edit_myprofile">
+			<result name="success" type="redirectAction">user-edit-profile?userId=${userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="admin-perform-edit"
+			class="com.cubesofttech.action.UserAction" method="performEdit">
+			<result name="success" type="tiles">admin_edit_userprofile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="user-perform-changepass"
+			class="com.cubesofttech.action.UserAction" method="changepass">
+			<result name="success" type="redirectAction">user-edit-profile?userId=${userId}
+			</result>
+			<result name="error" type="redirectAction">change-password?massage=11</result>
+		</action>
+		<!-- เพิ่ม function add -->
+		<action name="user-perform-add"
+			class="com.cubesofttech.action.UserAction" method="performAdd">
+			<result name="success" type="redirectAction">user-edit?userId=${userId}
+			</result>
+			<result name="error" type="tiles">user.add</result>
+		</action>
+		<!-- function delete -->
+		<action name="user-flag"
+			class="com.cubesofttech.action.UserAction" method="setFlagsearch">
+			<result name="success" type="chain">user-list2</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- [END] User -->
+		<!-- Article -->
+		<action name="article-feed"
+			class="com.cubesofttech.action.ArticleAction" method="init">
+			<result name="success" type="tiles">article.feed</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- Test json -->
+		<action name="article-list"
+			class="com.cubesofttech.action.ArticleAction" method="articleList">
+			<result name="success" >/pages-back/common/json.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- json -->
+		<action name="article-new"
+			class="com.cubesofttech.action.ArticleAction" method="init">
+			<result name="success" type="tiles">article.new</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="article-add"
+			class="com.cubesofttech.action.ArticleAction" method="article_add">
+			<result name="success" type="tiles">article.feed</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="article_edit"
+			class="com.cubesofttech.action.ArticleAction" method="openEdit">
+			<result name="success" type="tiles">article_edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="article_update"
+			class="com.cubesofttech.action.ArticleAction" method="edit">
+			<result name="success" type="tiles">article.feed</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- Article Chart -->
+		<action name="article_chart"
+			class="com.cubesofttech.action.ArticleAction"
+			method="open_article_graph">
+			<result name="success" type="tiles">article.chart</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="article_delete"
+			class="com.cubesofttech.action.ArticleAction" method="delete">
+			<result name="success" type="tiles">article.feed</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- [END] Article -->
+
+		<!-- Role -->
+		<action name="role-list"
+			class="com.cubesofttech.action.RoleAction" method="list">
+			<result name="success" type="tiles">role.list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="role-edit"
+			class="com.cubesofttech.action.RoleAction" method="openEdit">
+			<result name="success" type="tiles">role.edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- เพิ่ม function add -->
+		<action name="role-add"
+			class="com.cubesofttech.action.RoleAction" method="openEdit2">
+			<result name="success" type="tiles">role.add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- เพิ่ม function add -->
+		<action name="role-perform-add"
+			class="com.cubesofttech.action.RoleAction" method="performAdd">
+			<result name="success" type="redirectAction">role-edit?roleId=${roleId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- เพิ่ม function add -->
+		<action name="role-perform-edit-*"
+			class="com.cubesofttech.action.RoleAction" method="performEdit">
+			<result name="success" type="redirectAction">role-edit?roleId=${roleId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- function delete -->
+		<action name="role-delete"
+			class="com.cubesofttech.action.RoleAction" method="deleteRole">
+			<result name="success" type="chain">role-list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั้นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+<!-- 16/9/19 QRCode-->
+		<action name="QRCode_Generate"
+			class="com.cubesofttech.action.WorkHoursAction" method="QRCodeGenerate">
+			<result name="success">/pages-back/check/qrcode_generate.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="QRCode_gen"
+			class="com.cubesofttech.action.QRCodeAction" method="QRCodeGen">
+			<result name="success">/pages-back/check/qrcode_generate.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="QRCode_form"
+			class="com.cubesofttech.action.WorkHoursAction" method="QRCodeForm">
+			<result name="success">/pages-back/check/qrcode_check_in.jsp</result>
+			<result name="success2">/pages-back/check/qrcode_checked.jsp?number=${phone}</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="QRcheckin"
+			class="com.cubesofttech.action.WorkHoursAction" method="QRcheckin">
+			<result name="success">/pages-back/check/qrcode_checked.jsp</result>
+			<result name="success2" type="redirectAction">QRCode_form?qrID=${#request.qrID}</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="QRdelete"
+			class="com.cubesofttech.action.WorkHoursAction" method="QRupdate">
+			<result name="success">/pages-back/check/qrcode_checked.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- check hour/list/in -->
+		<action name="check_in"
+			class="com.cubesofttech.action.WorkHoursAction" method="checkin">
+			<result name="success" type="tiles">check.in</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="check_edit"
+			class="com.cubesofttech.action.WorkHoursAction" method="checkEdit">
+			<result name="success" type="tiles">check.edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- 20/03 -->
+		<action name="check_allCalendar"
+			class="com.cubesofttech.action.WorkHoursAction" method="CalendarAll">
+			<result name="success" type="tiles">check_allCalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="SearchAllinCalendar"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="searchAlll_calendar">
+			<result name="success" type="tiles">check_allCalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="checklist_calendar"
+			class="com.cubesofttech.action.WorkHoursAction" method="calendar">
+			<result name="success" type="tiles">check_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="searchchecklistcalendar"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="searchcalendar">
+			<result name="success" type="tiles">check_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="checklist_calendarday"
+			class="com.cubesofttech.action.WorkHoursAction" method="calendarday">
+			<result name="success" type="tiles">check_calendarday</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="check_email"
+			class="com.cubesofttech.action.LoginAction" method="forgetPassword">
+		</action>
+
+		<action name="save-check"
+			class="com.cubesofttech.action.WorkHoursAction" method="savecheck">
+			<result name="success" type="redirectAction">check_list?userId=${onlineUser.id}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="edit-check"
+			class="com.cubesofttech.action.WorkHoursAction" method="updatecheck">
+			<result name="success" type="chain">check_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="next_month"
+			class="com.cubesofttech.action.WorkHoursAction" method="calendar">
+			<result name="success" type="tiles">check_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="searchnext_month"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="searchcalendar">
+			<result name="success" type="tiles">check_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- Search check all calendar -->
+		<action name="searchAllmonth"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="searchAlll_calendar">
+			<result name="success" type="tiles">check_allCalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="save_approve"
+			class="com.cubesofttech.action.WorkHoursAction" method="saveapprove">
+			<result name="success" type="tiles">check.approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="check_history"
+			class="com.cubesofttech.action.WorkHoursAction" method="listhistory">
+			<result name="success" type="tiles">check.history</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="search-his"
+			class="com.cubesofttech.action.WorkHoursAction" method="searchhis">
+			<result name="success" type="tiles">check.history</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="search_approve"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="search_approve">
+			<result name="success" type="tiles">check.approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="approve_list"
+			class="com.cubesofttech.action.WorkHoursAction" method="approve">
+			<result name="success" type="tiles">check.approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="check_list"
+			class="com.cubesofttech.action.WorkHoursAction" method="list">
+			<result name="success" type="tiles">check.list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="search-list"
+			class="com.cubesofttech.action.WorkHoursAction" method="searchlist">
+			<result name="success" type="tiles">check.list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 18-01-2019 เพิ่มแอคชั่นหน้ารายงานแผนที่เช็คอิน -->
+		<action name="check_map"
+			class="com.cubesofttech.action.WorkHoursAction" method="map_list">
+			<result name="success" type="tiles">check.map</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- 18-01-2019 -->
+
+		<!-- Holiday -->
+
+		<action name="holiday_list"
+			class="com.cubesofttech.action.HolidayAction" method="List">
+			<result name="success" type="tiles">holiday_newlist</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="holiday_charts"
+			class="com.cubesofttech.action.GraphAction" method="holidayCharts">
+			<result name="success" type="tiles">holiday_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="holiday_charts_search"
+			class="com.cubesofttech.action.GraphAction"
+			method="holidayChartsSearch">
+			<result name="success" type="tiles">holiday_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="holiday_add"
+			class="com.cubesofttech.action.HolidayAction" method="formadd">
+			<result name="success" type="tiles">holiday_add </result> <!-- Definition หน้า JSP -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="holiday_calendar"
+			class="com.cubesofttech.action.HolidayAction" method="List1">
+			<result name="success" type="tiles">holiday_calendar</result> <!-- Definition หน้า JSP -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="holiday_findnextYear"
+			class="com.cubesofttech.action.HolidayAction" method="findnext_year">
+			<result name="success" type="tiles">holiday_calendar</result> <!-- Definition หน้า JSP -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="AddHoliday"
+			class="com.cubesofttech.action.HolidayAction" method="Add">
+			<result name="success" type="chain">holiday_list2</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error" type="tiles">holiday_add</result>
+			<result name="input" type="tiles">holiday_add</result>
+			<result name="login" type="chain">holiday_calendar</result>
+		</action>
+		
+		<action name="holiday_edit"
+			class="com.cubesofttech.action.HolidayAction" method="Edit">
+			<result name="success" type="tiles">holiday_edit </result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="holiday_edit_calendar"
+			class="com.cubesofttech.action.HolidayAction" method="Edit">
+			<result name="success" type="tiles">holiday_edit </result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="UpdateHoliday"
+			class="com.cubesofttech.action.HolidayAction" method="Update">
+			<result name="success" type="chain">holiday_list2</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+			<result name="input" type="tiles">holiday_edit</result>
+			<result name="login" type="chain">holiday_calendar</result>
+		</action>
+
+		<action name="UpdateHoliday_calendar"
+			class="com.cubesofttech.action.HolidayAction"
+			method="Update_calendar">
+			<result name="success" type="chain">holiday_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="UpdateMoving_calendar"
+			class="com.cubesofttech.action.HolidayAction"
+			method="moving_calendar">
+			<result name="success" type="chain">holiday_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="DeleteHoliday_calendar"
+			class="com.cubesofttech.action.HolidayAction"
+			method="Delete_calendar">
+			<result name="success" type="chain">holiday_calendar</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="DeleteHoliday"
+			class="com.cubesofttech.action.HolidayAction" method="Delete">
+			<result name="success" type="chain">holiday_list2</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+			<result name="login" type="chain">holiday_calendar</result>
+		</action>
+
+		<action name="SearchHoliday"
+			class="com.cubesofttech.action.HolidayAction" method="searchtable">
+			<result name="success" type="tiles">holiday_newlist</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- Graph -->
+
+		<action name="piecharts"
+			class="com.cubesofttech.action.GraphAction" method="open_graph">
+			<result name="success" type="tiles">piecharts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_graph"
+			class="com.cubesofttech.action.GraphAction" method="search_graph">
+			<result name="success" type="redirectAction">piecharts?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_graphexpense"
+			class="com.cubesofttech.action.GraphAction"
+			method="search_graphexpense">
+			<result name="success" type="tiles">expense_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_leavecharts"
+			class="com.cubesofttech.action.GraphAction"
+			method="searchLeaveCharts">
+			<result name="success" type="tiles">leave_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_leavecharts_all"
+			class="com.cubesofttech.action.GraphAction"
+			method="searchLeaveChartsAll">
+			<result name="success" type="tiles">leave_charts_all</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="user-report"
+			class="com.cubesofttech.action.GraphAction" method="UserChart">
+			<result name="success" type="tiles">user-report</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- 08/03/19 Leaves chart report -->
+		<action name="search_leavechartsReport"
+			class="com.cubesofttech.action.GraphAction"
+			method="searchLeaveChartsReport">
+			<result name="success" type="redirectAction">leave_charts_report</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="BI" class="com.cubesofttech.action.GraphAction"
+			method="open_BI">
+			<result name="success" type="tiles">powerBI</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="openBI"
+			class="com.cubesofttech.action.jsonAction" method="open">
+			<result name="success" type="tiles">powerBI</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="reportLeaves"
+			class="com.cubesofttech.action.GraphAction" method="openleavesReport">
+			<result name="success" type="tiles">leavesReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_charts"
+			class="com.cubesofttech.action.GraphAction" method="openLeaveCharts">
+			<result name="success" type="tiles">leave_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- Travel Exp Report -->
+		<action name="travel_exp_report"
+			class="com.cubesofttech.action.GraphAction" method="openTravelExpReport">
+			<result name="success" type="tiles">travel_exp_report</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_travel_exp"
+			class="com.cubesofttech.action.GraphAction" method="searchTravelExpReport">
+			<result name="success" type="tiles">travel_exp_report</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave change user to approve -->
+		<!--  End Travel exp Report -->
+		
+		<!-- 08/03/2019 Leaves chart report -->
+		<action name="leave_charts_report"
+			class="com.cubesofttech.action.GraphAction"
+			method="openRELeaveCharts">
+			<result name="success" type="tiles">leave_charts_report</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="expense_charts"
+			class="com.cubesofttech.action.GraphAction"
+			method="openExpenseCharts">
+			<result name="success" type="tiles">expense_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchReportLeaves"
+			class="com.cubesofttech.action.GraphAction"
+			method="searchleavesReport">
+			<result name="success" type="tiles">leavesReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchleavesreportBytype"
+			class="com.cubesofttech.action.GraphAction"
+			method="searchleavesReportbyType">
+			<result name="success" type="tiles">leavesReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="reportExpense"
+			class="com.cubesofttech.action.GraphAction"
+			method="openExpenseReport">
+			<result name="success" type="tiles">expenseReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchExpense"
+			class="com.cubesofttech.action.GraphAction"
+			method="searcchExpenseReport">
+			<result name="success" type="tiles">expenseReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="openOnTimeChart"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="ontimeChart">
+			<result name="success" type="tiles">onTimeReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="checkinOnTimeChart"
+			class="com.cubesofttech.action.GraphAction"
+			method="checkinOnTime">
+			<result name="success" type="tiles">searchOnTime</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="openLateChart"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="lateChart">
+			<result name="success" type="tiles">LateReport</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="checkinLateChart"
+			class="com.cubesofttech.action.GraphAction"
+			method="checkinLate">
+			<result name="success" type="tiles">searchLate</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- [END] Graph -->
+
+		<!-- Leave -->
+		<action name="leave_list"
+			class="com.cubesofttech.action.LeaveAction" method="list">
+			<result name="success" type="tiles">leave_list </result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_approved"
+			class="com.cubesofttech.action.LeaveAction" method="list">
+			<result name="success" type="tiles">leave_approved </result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_charts_all"
+			class="com.cubesofttech.action.GraphAction" method="leaveChartsAll">
+			<result name="success" type="tiles">leave_charts_all </result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_wlist"
+			class="com.cubesofttech.action.LeaveAction" method="leave_wlist">
+			<result name="success" type="tiles">myleave_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_form"
+			class="com.cubesofttech.action.LeaveAction" method="performEdit">
+			<result name="success" type="tiles">leave_form
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_perform_form"
+			class="com.cubesofttech.action.LeaveAction" method="approve">
+			<result name="success" type="chain">leave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_add"
+			class="com.cubesofttech.action.LeaveAction" method="openEdit">
+			<result name="success" type="tiles">leave_add
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leave_perform_add"
+			class="com.cubesofttech.action.LeaveAction" method="add">
+			<result name="success" type="redirectAction">leave_list?Id=${#request.id}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="delete_leave_id"
+			class="com.cubesofttech.action.LeaveAction" method="deleteleave">
+			<result name="success" type="chain">leave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="delete_leave_calecdar"
+			class="com.cubesofttech.action.LeaveAction" method="deleteleave">
+			<result name="success" type="chain">leavecalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- <action name="leave_perform_add" class="com.cubesofttech.action.LeaveAction" 
+			method="add"> <result name="success" type="tiles">leave_list </result> <result 
+			name="input">/index.jsp</result> </action> -->
+			
+		<!-- Travel -->
+		<action name="travelexp_form"
+			class="com.cubesofttech.action.ExpenseAction" method="list">
+			<result name="success" type="tiles">travelexp_form</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="travelexp_edit"
+			class="com.cubesofttech.action.ExpenseAction" method="openEdit">
+			<result name="success" type="tiles">travelexp_edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="travelexp_edit_record"
+			class="com.cubesofttech.action.ExpenseAction" method="openEdit">
+			<result name="success" type="tiles">travelexp_edit_record</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="add-other"
+			class="com.cubesofttech.action.ExpenseAction" method="addOther">
+			<result name="success" type="tiles">travelexp_form</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="exp-search"
+			class="com.cubesofttech.action.ExpenseAction" method="expSearch">
+			<result name="success" type="tiles">travelexp_form</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="exp-delete"
+			class="com.cubesofttech.action.ExpenseAction" method="expDelete">
+			<result name="success" type="tiles">travelexp_form</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="update-group"
+			class="com.cubesofttech.action.ExpenseAction" method="expUpdateGroup">
+			<result name="success" type="redirectAction">requesttravel_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="expense_add"
+			class="com.cubesofttech.action.ExpenseAction" method="add">
+			<result name="success" type="tiles">expense_add</result>
+			<result name="error">/index.jsp</result>
+			<result name="login" type="redirectAction">travelexp_calendar?userId=${#request.userId}
+			</result>
+		</action>
+		<action name="expense_edit"
+			class="com.cubesofttech.action.ExpenseAction" method="edit">
+			<result name="success" type="chain">requesttravel_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="expense_edit_record"
+			class="com.cubesofttech.action.ExpenseAction" method="edit_record">
+			<result name="success" type="redirectAction">travelexp_form?userId=${#request.userId}</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="perfrom_upload"
+			class="com.cubesofttech.action.FileUploadAction" method="list">
+			<result name="success" type="tiles">upload_file</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="perfrom_upload2"
+			class="com.cubesofttech.action.FileUploadAction" method="list2">
+			<result name="success" type="tiles">upload_file2</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="upload_files"
+			class="com.cubesofttech.action.FileUploadAction" method="upload">
+			<result name="success" type="tiles">upload_file</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="delete_file"
+			class="com.cubesofttech.action.FileUploadAction" method="delete">
+			<result name="success" type="tiles">upload_file</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="requesttravel_list"
+			class="com.cubesofttech.action.ExpenseGroupAction" method="listID">
+			<result name="success" type="tiles">requesttravel_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchtable"
+			class="com.cubesofttech.action.ExpenseGroupAction" method="search">
+			<result name="success" type="tiles">requesttravel_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="request_form"
+			class="com.cubesofttech.action.ExpenseGroupAction" method="list">
+			<result name="success" type="tiles">request_form
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="request_approve"
+			class="com.cubesofttech.action.ExpenseGroupAction" method="status">
+			<result name="success" type="redirectAction">requesttravel_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="travelexp_calendar"
+			class="com.cubesofttech.action.ExpenseAction" method="openCalendar">
+			<result name="success" type="tiles">travelexp_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="travelexp_calendar_del"
+			class="com.cubesofttech.action.ExpenseAction"
+			method="travelExpCalendarDelete">
+			<result name="success" type="redirectAction">travelexp_calendar?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="travelexp_calendar_search"
+			class="com.cubesofttech.action.ExpenseAction"
+			method="travelexpCalendarSearch">
+			<result name="success" type="redirectAction">travelexp_calendar?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_calendar_search"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="timesheetCalendarSearch">
+			<result name="success" type="redirectAction">timesheet_calendar?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_calendar_del"
+			class="com.cubesofttech.action.TimesheetAction" method="timesheetDel">
+			<result name="success" type="redirectAction">timesheet_calendar?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_form"
+			class="com.cubesofttech.action.TimesheetAction" method="listforadd">
+			<result name="success" type="tiles">timesheet_form</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_add"
+			class="com.cubesofttech.action.TimesheetAction" method="addTimesheet">
+			<result name="success" type="tiles">timesheet_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_update"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="updateTimesheet">
+			<result name="success" type="tiles">timesheet_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave leader -->
+		<action name="search_select"
+			class="com.cubesofttech.action.LeaveAction" method="select">
+			<result name="success">/pages-back/leave/leave_leader.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave list search -->
+		<action name="search_leave"
+			class="com.cubesofttech.action.LeaveAction" method="searchleave">
+			<result name="success" type="tiles">leave_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave approved search -->
+		<action name="search_leave_approved"
+			class="com.cubesofttech.action.LeaveAction"
+			method="searchleaveapproved">
+			<result name="success" type="tiles">leave_approved </result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave change user to approve -->
+		<action name="select_approve"
+			class="com.cubesofttech.action.LeaveAction" method="selectapprove">
+			<result name="success">/pages-back/leave/leave_approve.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave change approve -->
+		<action name="changesapprove"
+			class="com.cubesofttech.action.LeaveAction" method="changesapprove">
+			<result name="success">/pages-back/leave/leave_approve.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- leave change leader -->
+		<action name="changesleader"
+			class="com.cubesofttech.action.LeaveAction" method="changesleader">
+			<result name="success">/pages-back/leave/leave_leader.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- My leave -->
+		<action name="searchfromto"
+			class="com.cubesofttech.action.LeaveAction" method="myleave">
+			<result name="success" type="tiles">myleave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="myleave_list"
+			class="com.cubesofttech.action.LeaveAction" method="list">
+			<result name="success" type="tiles">myleave_list
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="myleave_edit"
+			class="com.cubesofttech.action.LeaveAction" method="myEdit">
+			<result name="success" type="tiles">myleave_edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="workhours_chart"
+			class="com.cubesofttech.action.WorkHoursAction" method="workHoursChart">
+			<result name="success" type="tiles">workhours_chart</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="leave_form_edit"
+			class="com.cubesofttech.action.LeaveAction" method="myLeaveUpdate">
+			<result name="success" type="chain">myleave_list</result>
+			<result name="input" type="chain">leavecalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="select_myapprove"
+			class="com.cubesofttech.action.LeaveAction" method="selectmyapprove">
+			<result name="success">/pages-back/leave/myleave_approve.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="myleave_add"
+			class="com.cubesofttech.action.LeaveAction" method="listmy">
+			<result name="success" type="tiles">myleave_add
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="myleave_perform_add"
+			class="com.cubesofttech.action.LeaveAction" method="addmy">
+			<result name="success" type="redirectAction">myleave_list?Id=${leaveId}
+			</result>
+			<result name="error">/index.jsp</result>
+			<result name="input" type="chain">leavecalendar</result>
+		</action>
+		
+		<action name="select_myleader"
+			class="com.cubesofttech.action.LeaveAction" method="selectmyleader">
+			<result name="success">/pages-back/leave/myleave_leader.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- my leave change approve -->
+		<action name="changesmyapprove"
+			class="com.cubesofttech.action.LeaveAction" method="changesmyapprove">
+			<result name="success">/pages-back/leave/myleave_approve.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!--my leave change leader -->
+		<action name="changesmyleader"
+			class="com.cubesofttech.action.LeaveAction" method="changesmyleader">
+			<result name="success">/pages-back/leave/myleave_leader.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="list_Update_check"
+			class="com.cubesofttech.action.LeaveAction" method="list_Updatena">
+			<result name="success" type="tiles">leave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="leave_check_approve"
+			class="com.cubesofttech.action.LeaveAction" method="leave_approve">
+			<result name="success" type="tiles">leave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- BORROW -->
+		<action name="borrowing"
+			class="com.cubesofttech.action.BorrowAction" method="list">
+			<result name="success" type="tiles">borrowing</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="search-avi"
+			class="com.cubesofttech.action.BorrowAction" method="searchList">
+			<result name="success" type="tiles">borrowing</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="productupdate"
+			class="com.cubesofttech.action.BorrowAction" method="product">
+			<result name="success" type="tiles">borrowing</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="addnew"
+			class="com.cubesofttech.action.BorrowAction" method="info">
+			<result name="success" type="tiles">addnew</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="product"
+			class="com.cubesofttech.action.BorrowAction" method="openEdit">
+			<result name="success" type="tiles">product</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="save-new"
+			class="com.cubesofttech.action.BorrowAction" method="saveNew">
+			<result name="success" type="tiles">borrowing</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="searchLeaveCalendar"
+			class="com.cubesofttech.action.BorrowAction"
+			method="searchLeaveCalendar">
+			<result name="success" type="redirectAction">leavecalendar?userId=${#request.userId}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="leavecalendar"
+			class="com.cubesofttech.action.BorrowAction" method="leave_calendar">
+			<result name="success" type="tiles">leavecalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="leave_resize_calendar"
+			class="com.cubesofttech.action.BorrowAction" method="resizeCalendar">
+			<result name="success" type="chain">leavecalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrow_app"
+			class="com.cubesofttech.action.BorrowAction" method="approve">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="deleteborrowapnirobon"
+			class="com.cubesofttech.action.BorrowAction" method="deleteBorrow">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="equipmen_up_status"
+			class="com.cubesofttech.action.BorrowAction" method="updateStatus">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="delete_eqi"
+			class="com.cubesofttech.action.BorrowAction" method="deleteEquipment">
+			<result name="success" type="tiles">borrowing</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="delete_eqix"
+			class="com.cubesofttech.action.BorrowAction" method="deleteBorrow">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="equipmen_restatus"
+			class="com.cubesofttech.action.BorrowAction"
+			method="reStatusEquipment">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="update_borrow_status"
+			class="com.cubesofttech.action.BorrowAction"
+			method="updateBorrowStatus">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+			<result type="json"></result>
+		</action>
+
+		<action name="delete_eqixx"
+			class="com.cubesofttech.action.BorrowAction"
+			method="reStatusEquipmentToX">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="update_borrow_reason"
+			class="com.cubesofttech.action.BorrowAction"
+			method="updateBorrowApprovedReason">
+			<result name="success" type="tiles">borrow_app</result>
+			<result name="error">/borrow_app</result>
+			<result type="json"></result>
+		</action>
+
+		<action name="approve_id"
+			class="com.cubesofttech.action.BorrowAction" method="detailBorrow">
+			<result name="success" type="tiles">approve_id</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- borrow -->
+		<action name="equipment_open"
+			class="com.cubesofttech.action.BorrowingAction" method="open">
+			<result name="success" type="tiles">equipment</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="Update_Borrow_Detail"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="updateBorrowDetail">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="equipment"
+			class="com.cubesofttech.action.BorrowingAction" method="save">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrowList_show"
+			class="com.cubesofttech.action.BorrowingAction" method="open">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrowList_search"
+			class="com.cubesofttech.action.BorrowingAction" method="search">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrowList"
+			class="com.cubesofttech.action.BorrowingAction" method="open">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrowList_delete"
+			class="com.cubesofttech.action.BorrowingAction" method="delete">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrow_return"
+			class="com.cubesofttech.action.BorrowingAction" method="update">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="productBorrow"
+			class="com.cubesofttech.action.BorrowingAction" method="show">
+			<result name="success" type="tiles">detail</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="return_succress"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="statusSuccress">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="unapprove"
+			class="com.cubesofttech.action.BorrowingAction" method="unApprove">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="borrowList_cancle"
+			class="com.cubesofttech.action.BorrowingAction" method="cancle">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="cancel_return"
+			class="com.cubesofttech.action.BorrowingAction" method="cancleReturn">
+			<result name="success" type="tiles">borrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- Insert Update Delete Department -->
+		<!-- [END] Borrow -->
+
+		<!-- Department -->
+		<action name="department_list"
+			class="com.cubesofttech.action.DepartmentAction" method="list">
+			<result name="success" type="tiles">department_list</result>
+		</action>
+		<action name="department_add"
+			class="com.cubesofttech.action.DepartmentAction" method="addDepart">
+			<result name="success" type="tiles">department_add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="saveDepart"
+			class="com.cubesofttech.action.DepartmentAction" method="saveDepart">
+			<result name="success" type="tiles">department_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+			<result name="input" type="tiles">department_add</result>
+		</action>
+		<action name="Department_delete"
+			class="com.cubesofttech.action.DepartmentAction"
+			method="deleteDepartment">
+			<result name="success" type="tiles">department_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="Department_edit"
+			class="com.cubesofttech.action.DepartmentAction"
+			method="updateDepart">
+			<result name="success" type="tiles">department_edit</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="updateDepart"
+			class="com.cubesofttech.action.DepartmentAction" method="editDepart">
+			<result name="success" type="tiles">department_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- Insert Update Delete Department -->
+
+		<action name="demo" class="com.cubesofttech.action.DemoAction"
+			method="demo">
+
+			<result name="success" type="tiles">role.edit</result>
+			<result name="user_profile" type="tiles">user_profile</result>
+			<result name="xxx.list" type="tiles">xxx.list</result>
+			<result name="yyy.list" type="tiles">yyy.list</result>
+			<result name="page2" type="tiles">role.edit</result>
+			<result name="error">/index.jsp</result>
+			<result name="" type="tiles">change_password</result>
+
+			<!-- <result name="leave_list" type="tiles">leave_list</result> <result 
+				name="leave_form" type="tiles">leave_form</result> <result name="travelexp_form" 
+				type="tiles">travelexp_form</result> <result name="requesttravel_form" type="tiles">requesttravel_form 
+				</result> -->
+			<result name="check_list" type="tiles">check.list</result>
+			<result name="check_in" type="tiles">check.in</result>
+			<result name="check_history" type="tiles">check.history</result>
+			<result name="expenses_list" type="tiles">expenses.list</result>
+
+			<result name="Diary" type="tiles">Diary</result>
+			<result name="demo-scg1" type="tiles">demo-scg1</result>
+
+			<result name="demo-scg3" type="tiles">demo-scg3</result>
+			<result name="demo-scg4" type="tiles">demo-scg4</result>
+			<result name="demo-scg5" type="tiles">demo-scg5</result>
+			<result name="demo-scg6" type="tiles">demo-scg6</result>
+			<result name="create-new" type="tiles">create-new</result>
+			<result name="assistance_helper" type="tiles">assistance_helper
+			</result>
+			<result name="assistance_helper_edit" type="tiles">assistance_helper_edit
+			</result>
+			<result name="catalog-detail" type="tiles">catalog-detail</result>
+			<result name="service-catalog" type="tiles">service-catalog</result>
+			<result name="jobmain-page" type="tiles">jobmain-page</result>
+			<result name="material_management" type="tiles">material_management
+			</result>
+			<result name="product-detail" type="tiles">product-detail</result>
+			<result name="changef-management" type="tiles">changef-management
+			</result>
+			<result name="material_management_edit" type="tiles">material_management_edit
+			</result>
+
+			<result name="add_promotion" type="tiles">add_promotion</result>
+			<result name="edit_promotion" type="tiles">edit_promotion</result>
+
+			<!-- demo ระบบยืมอุปกรณ์ -->
+			<!-- <result name="Equipment" type="tiles">Equipment</result> -->
+			<result name="product" type="tiles">product</result>
+			<result name="Borrow Your" type="tiles">Borrow Your</result>
+			<result name="borrowing" type="tiles">borrowing</result>
+			<result name="borrow_app" type="tiles">borrow_app</result>
+			<result name="addnew" type="tiles">addnew</result>
+		</action>
+
+		<!-- leavetype -->
+		<action name="leaveType_list"
+			class="com.cubesofttech.action.LeaveTypeAction" method="list">
+			<result name="success" type="tiles">leavetype_newlist</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="Searchleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction" method="searchTable">
+			<result name="success" type="tiles">leavetype_newlist</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="leavetypeEdit"
+			class="com.cubesofttech.action.LeaveTypeAction" method="edit">
+			<result name="success" type="tiles">leavetype_edit </result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="createleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction" method="init">
+			<result name="success" type="tiles">leavetype_add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="Addleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction"
+			method="saveLeaveType">
+			<result name="success" type="chain">leaveType_list</result>
+			<result name="error" type="tiles">leavetype_add</result>
+			<result name="input" type="tiles">leavetype_add</result>
+		</action>
+		<action name="Editleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction" method="edit">
+			<result name="success" type="tiles">leavetype_edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="toDeleteleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction" method="delete">
+			<result name="success" type="chain">leaveType_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="Updateleavetype"
+			class="com.cubesofttech.action.LeaveTypeAction" method="update">
+			<result name="success" type="chain">leaveType_list</result>
+			<result name="error">/index.jsp</result>
+			<result name="input" type="tiles">leavetype_edit</result>
+		</action>
+		<!-- End leavetype -->
+		<!-- เพิ่ม ลบ รายการ รถยนตร์ -->  <!-- method ซ้ำได้ method บอกว่ามันจะวิ่งเข้าไปในไหน (TavelAction) -->
+		<action name="travel_list"
+			class="com.cubesofttech.action.TravelAction" method="list">
+			<result name="success" type="tiles">travel_list</result>  <!-- Tiles คือ ชื่อ Strug-tiles -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="travel_add"
+			class="com.cubesofttech.action.TravelAction" method="list">
+			<result name="success" type="tiles">travel_add</result>  <!-- Tiles คือ ชื่อ Strug-tiles -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="travel_Save"
+			class="com.cubesofttech.action.TravelAction" method="saveTravel">
+			<result name="success" type="tiles">travel_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="travel_delete"
+			class="com.cubesofttech.action.TravelAction" method="delete">
+			<result name="success" type="chain">travel_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="travel_edit"
+			class="com.cubesofttech.action.TravelAction" method="edit">
+			<result name="success" type="tiles">travel_edit</result> 
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="delete_group"
+			class="com.cubesofttech.action.ExpenseGroupAction" method="deleteGroup">
+			<result name="success" type="redirectAction">travelexp_form?userId=${#request.userId}</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="travel_update"
+			class="com.cubesofttech.action.TravelAction" method="updatedept">
+			<result name="success" type="chain">travel_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั่นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- [END] Travel List -->
+
+		<!-- timesheet -->
+		<action name="timesheet_list"
+			class="com.cubesofttech.action.TimesheetAction" method="list">
+			<result name="success" type="tiles">timesheet_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_calendar"
+			class="com.cubesofttech.action.TimesheetAction" method="calendar">
+			<result name="success" type="tiles">timesheet_calendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="addTimesheet"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="saveTimesheet">
+			<result name="success" type="chain">timesheet_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="delTimesheet"
+			class="com.cubesofttech.action.TimesheetAction" method="timesheetDel">
+			<result name="success" type="chain">timesheet_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="timesheet_list_approve"
+			class="com.cubesofttech.action.TimesheetAction" method="list">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listUpdateA"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="listUpdatestatusA">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listUpdateR"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="listUpdatestatusR">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listUpdateAall"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="listUpdatestatusAall">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listUpdateRall"
+			class="com.cubesofttech.action.TimesheetAction"
+			method="listUpdatestatusRall">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchTimesheet"
+			class="com.cubesofttech.action.TimesheetAction" method="searchTable">
+			<result name="success" type="tiles">timesheet_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="search_timesheet"
+			class="com.cubesofttech.action.TimesheetAction" method="searchTable2">
+			<result name="success" type="tiles">timesheet_list_approve</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!--End timesheet -->
+		<action name="travelReport"
+			class="com.cubesofttech.action.ReportAction"
+			method="expenseTravelReport">
+		</action>
+		
+		<action name="travelReportList"
+			class="com.cubesofttech.action.ReportAction"
+			method="expenseTravelReportList">
+		</action>
+		
+		<action name="travelReportTH"
+			class="com.cubesofttech.action.ReportAction"
+			method="expenseTravelReportTH">
+		</action>
+		<action name="leaveMonthReport"
+			class="com.cubesofttech.action.ReportAction" method="leaveMonthReport">
+		</action>
+		
+		<action name="leaveReport"
+			class="com.cubesofttech.action.ReportAction" method="leaveReport">
+		</action>
+		
+		<action name="leaveslistReport"
+			class="com.cubesofttech.action.ReportAction"
+			method="leaveslistReport">
+		</action>
+		<action name="borrowReport"
+			class="com.cubesofttech.action.ReportAction" method="borrowReport">
+		</action>
+		<action name="borrowSendBackReport"
+			class="com.cubesofttech.action.ReportAction"
+			method="borrowSendBackReport">
+		</action>
+		
+		<action name="userAllReport"
+			class="com.cubesofttech.action.ReportAction" method="userAllReport">
+		</action>
+		
+		<action name="holidayListReport"
+			class="com.cubesofttech.action.ReportAction" method="holidayListReport">
+		</action>
+
+		<!-- Position -->
+		<action name="position_list"
+			class="com.cubesofttech.action.PositionAction" method="list">
+			<result name="success" type="tiles">position_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="position_add"
+			class="com.cubesofttech.action.PositionAction" method="addPosition">
+			<result name="success" type="tiles">position_add</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="savePosition"
+			class="com.cubesofttech.action.PositionAction" method="savePosition">
+			<result name="success" type="tiles">position_list</result>
+			<result name="error">/index.jsp</result>
+			<result name="input" type="chain">position_add</result>
+		</action>
+
+		<action name="position_delete"
+			class="com.cubesofttech.action.PositionAction"
+			method="deletePosition">
+			<result name="success" type="tiles">position_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="updatePosition"
+			class="com.cubesofttech.action.PositionAction"
+			method="PositionUpdate">
+			<result name="success" type="tiles">position_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="editPosition"
+			class="com.cubesofttech.action.PositionAction" method="PositionEdit">
+			<result name="success" type="tiles">position_edit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="feedback"
+			class="com.cubesofttech.action.FeedbackAction" method="list">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="addFeed"
+			class="com.cubesofttech.action.FeedbackAction" method="saveFeed">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="feedbacklist_mm"
+			class="com.cubesofttech.action.FeedbackAction" method="list">
+			<result name="success" type="tiles">feedbacklist_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="search_feed_mm"
+			class="com.cubesofttech.action.FeedbackAction" method="searchFeed">
+			<result name="success" type="tiles">feedbacklist_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="open_feed_mm"
+			class="com.cubesofttech.action.FeedbackAction" method="openFeed">
+			<result name="success" type="tiles">feedback_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="saveU"
+			class="com.cubesofttech.action.FeedbackAction" method="saveUpdate">
+			<result name="success" type="tiles">feedbacklist_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="savefeedbackfile"
+			class="com.cubesofttech.action.FeedbackAction" method="saveFile">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="Ukey"
+			class="com.cubesofttech.action.FeedbackAction" method="getUkey">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="clearFeedback"
+			class="com.cubesofttech.action.FeedbackAction" method="clearFeedback">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="savefeedback"
+			class="com.cubesofttech.action.FeedbackAction" method="saveFeedback">
+			<result name="success" type="tiles">feedback</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="delFeedback"
+			class="com.cubesofttech.action.FeedbackAction" method="feedback_del1">
+			<result name="success" type="tiles">feedbacklist_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="delete_file_feed"
+			class="com.cubesofttech.action.FileFeedbackAction" method="delete">
+			<result name="success" type="tiles">feedback_mm</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="feedback_MyDetail"
+			class="com.cubesofttech.action.FeedbackAction" method="userDetail">
+			<result name="success" type="tiles">feedback_mydetail</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="myfile"
+			class="com.cubesofttech.action.FileFeedbackAction" method="list2">
+			<result name="success" type="tiles">myfileup</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="delete_filejane"
+			class="com.cubesofttech.action.FileFeedbackAction" method="delete">
+			<result name="success" type="tiles">feedback_mydetail</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="feedback_req"
+			class="com.cubesofttech.action.FeedbackAction" method="listuser">
+			<result name="success" type="tiles">feedback_req</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="feedback_del"
+			class="com.cubesofttech.action.FeedbackAction" method="feedback_del">
+			<result name="success" type="tiles">feedback_req</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="myfeedback"
+			class="com.cubesofttech.action.FeedbackAction" method="listuser">
+			<result name="success" type="tiles">feedback_req</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- line -->
+		<action name="goLineAuth"
+			class="com.cubesofttech.action.LineAction" method="goLineAuth">
+		</action>
+
+		<action name="lineAuth"
+			class="com.cubesofttech.action.LineAction" method="lineAuth">
+			<result name="login" type="redirectAction">lineLogin</result>
+			<result name="profile" type="redirectAction">lineLinkProfile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="lineLogin"
+			class="com.cubesofttech.action.LineAction" method="lineLogin">
+			<result name="success" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+			<result name="login">/</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="lineLink"
+			class="com.cubesofttech.action.LineAction" method="lineLink">
+			<result name="success" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="unlinkLine"
+			class="com.cubesofttech.action.LineAction" method="unlinkLine">
+			<result name="success" type="redirectAction">user-edit-profile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="lineLinkProfile"
+			class="com.cubesofttech.action.LineAction" method="lineLinkProfile">
+			<result name="success" type="redirectAction">user-edit-profile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- facebook -->
+		<!-- <action name="facebooktprofile" -->
+		<!-- class="com.cubesofttech.action.UserAction" method="keepfacebook"> -->
+		<!-- <result name="success" type="redirectAction">check_in</result> -->
+		<!-- <result name="error">/index.jsp</result> -->
+		<!-- </action> -->
+
+		<!-- <action name="facebooklogin" -->
+		<!-- class="com.cubesofttech.action.LoginAction" method="FBbooklogin"> -->
+		<!-- <result name="success" type="redirectAction">check_in</result> -->
+		<!-- <result name="error">/index.jsp</result> -->
+		<!-- </action> -->
+
+		<!-- <action name="unlinkFacebook" -->
+		<!-- class="com.cubesofttech.action.LoginAction" method="unlinkFace"> -->
+		<!-- <result name="success" type="redirectAction">user-edit-profile</result> -->
+		<!-- <result name="error">/index.jsp</result> -->
+		<!-- </action> -->
+
+		<!-- Facebook OAuth -->
+		<action name="goFbAuth"
+			class="com.cubesofttech.action.FacebookAction" method="gofbAuth">
+		</action>
+
+		<action name="fbAuth"
+			class="com.cubesofttech.action.FacebookAction" method="fbAuth">
+			<result name="login" type="redirectAction">facebookLogin</result>
+			<result name="profile" type="redirectAction">facebookLinkProfile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="facebookLogin"
+			class="com.cubesofttech.action.FacebookAction" method="facebookLogin">
+			<result name="success" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+			<result name="login">/</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="facebookLink"
+			class="com.cubesofttech.action.FacebookAction" method="facebookLink">
+			<result name="success" type="redirectAction">check_in?userId=${onlineUser.id}
+			</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="unlinkFacebook"
+			class="com.cubesofttech.action.FacebookAction"
+			method="unlinkFacebook">
+			<result name="success" type="redirectAction">user-edit-profile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<action name="facebookLinkProfile"
+			class="com.cubesofttech.action.FacebookAction"
+			method="facebookLinkProfile">
+			<result name="success" type="redirectAction">user-edit-profile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- Leave Remake -->
+		<action name="LeaveAdd"
+			class="com.cubesofttech.action.LeaveAction" method="LeaveAdd">
+			<result name="success" type="tiles">LeaveAdd</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="LeaveEdit"
+			class="com.cubesofttech.action.LeaveAction" method="LeaveEdit">
+			<result name="success" type="tiles">LeaveEdit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="LeaveAdd_Do"
+			class="com.cubesofttech.action.LeaveAction" method="LeaveAdd_Do">
+			<result name="success" type="redirect">leavecalendar</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="LeaveEdit_Do"
+			class="com.cubesofttech.action.LeaveAction" method="LeaveEdit_Do">
+			<result name="success" type="redirect">leave_list</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- this is leave approve action -->
+		<action name="Leave_inList"
+			class="com.cubesofttech.action.LeaveAction" method="Leave_inList">
+			<result name="success" type="chain">leave_list</result> <!-- type = "chain" เป้นการส่งให้ชื่อ Action นั้นทำงาน -->
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- end leave approve action -->
+		
+		<!-- Reset Lastyear quota -->
+		<action name="Reset_lastyear"
+			class="com.cubesofttech.action.UserAction" method="resetLastyearQuota">
+			<result name="success" type="chain">user-list</result> 
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<!-- Equipment Remake -->
+		<action name="selectE"
+			class="com.cubesofttech.action.EquipmentAction" method="table">
+			<result name="success" type="tiles">EquipmentTable</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="tableE"
+			class="com.cubesofttech.action.EquipmentAction" method="table">
+			<result name="success" type="tiles">EquipmentTable</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="ePieChart"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="EquipmentPieChart">
+			<result name="success" type="tiles">borrow_charts</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eAdd"
+			class="com.cubesofttech.action.EquipmentAction" method="eAdd">
+			<result name="success" type="tiles">eAdd</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eEdit"
+			class="com.cubesofttech.action.EquipmentAction" method="eEdit">
+			<result name="success" type="tiles">eEdit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="newE"
+			class="com.cubesofttech.action.EquipmentAction" method="newE">
+			<result name="success" type="redirect">tableE</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="updateE"
+			class="com.cubesofttech.action.EquipmentAction" method="updateE">
+			<result name="success" type="redirect">tableE</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="deleteE"
+			class="com.cubesofttech.action.EquipmentAction" method="deleteE">
+			<result name="success" type="redirect">tableE</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eCheckItemNo"
+			class="com.cubesofttech.action.EquipmentAction" method="eCheckItemNo">
+		</action>
+		<action name="eCheckBorrow"
+			class="com.cubesofttech.action.EquipmentAction" method="eCheckBorrow">
+		</action>
+		<action name="eCheckAllBorrow"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="eCheckAllBorrow">
+		</action>
+		<action name="getEquipmentJSON"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="getEquipmentJSON">
+		</action>
+		<action name="getEquipmentStatusJSON"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="getEquipmentStatusJSON">
+		</action>
+		<action name="getEquipmentTypeJSON"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="getEquipmentTypeJSON">
+		</action>
+
+		<!-- equipment type -->
+		<action name="EquipmentType"
+			class="com.cubesofttech.action.EquipmentAction" method="typelist">
+			<result name="success" type="tiles">EquipmentType</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="checkTypeRecord"
+			class="com.cubesofttech.action.EquipmentAction" method="TypeRecord">
+		</action>
+		<action name="AddType">
+			<result type="tiles">AddType</result>
+		</action>
+		<action name="EditType"
+			class="com.cubesofttech.action.EquipmentAction" method="typeEdit">
+			<result name="success" type="tiles">EditType</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="AddType2"
+			class="com.cubesofttech.action.EquipmentAction" method="typeEdit2">
+			<result name="success" type="tiles">AddType2</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="SaveType"
+			class="com.cubesofttech.action.EquipmentAction" method="typeSave">
+			<result name="success" type="redirect">EquipmentType</result>
+			<result name="error" type="chain">AddType2</result>
+		</action>
+		<action name="UpdateType"
+			class="com.cubesofttech.action.EquipmentAction" method="typeUpdate">
+			<result name="success" type="redirect">EquipmentType</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="EtypeDelete"
+			class="com.cubesofttech.action.EquipmentAction" method="typeDelete">
+			<result name="success" type="redirect">EquipmentType</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- Equipment Status -->
+		<action name="eStatusList"
+			class="com.cubesofttech.action.EquipmentAction" method="statusList">
+			<result name="success" type="tiles">eStatusList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="updateStatusColor"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="updateStatusColor">
+		</action>
+		<action name="checkEStatusRecord"
+			class="com.cubesofttech.action.EquipmentAction"
+			method="checkEStatusRecord">
+		</action>
+		<action name="eStatusAdd">
+			<result type="tiles">eStatusAdd</result>
+		</action>
+		<action name="eStatusEdit"
+			class="com.cubesofttech.action.EquipmentAction" method="statusEdit">
+			<result name="success" type="tiles">eStatusEdit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eStatusSave"
+			class="com.cubesofttech.action.EquipmentAction" method="statusSave">
+			<result name="success" type="redirect">eStatusList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eStatusUpdate"
+			class="com.cubesofttech.action.EquipmentAction" method="statusUpdate">
+			<result name="success" type="redirect">eStatusList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eStatusDelete"
+			class="com.cubesofttech.action.EquipmentAction" method="statusDelete">
+			<result name="success" type="redirect">eStatusList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- Borrow Re-make -->
+		<action name="eBorrow"
+			class="com.cubesofttech.action.BorrowingAction" method="eBorrow">
+			<result name="success" type="tiles">eBorrow</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eBorrowEdit"
+			class="com.cubesofttech.action.BorrowingAction" method="eBorrowEdit">
+			<result name="success" type="tiles">eBorrowEdit</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eBorrowAdd"
+			class="com.cubesofttech.action.BorrowingAction" method="eBorrowAdd">
+			<result name="success" type="redirect">myBorrow</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eBorrowUpdate"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="eBorrowUpdate">
+			<result name="success" type="redirect">eBorrowList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eBorrowList"
+			class="com.cubesofttech.action.BorrowingAction" method="eBorrowList">
+			<result name="success" type="tiles">bList</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="myBorrow"
+			class="com.cubesofttech.action.BorrowingAction" method="myBorrow">
+			<result name="success" type="tiles">myBorrow</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="eBorrowApprove"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="eBorrowApprove">
+			<result name="success" type="tiles">eBorrowApprove</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="getBorrowJSON"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="getBorrowJSON">
+		</action>
+		<action name="cancleMyBorrow"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="cancleMyBorrow">
+		</action>
+		<action name="returnMyBorrow"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="returnMyBorrow">
+		</action>
+		<action name="approveBorrow"
+			class="com.cubesofttech.action.BorrowingAction"
+			method="approveBorrow">
+		</action>
+		<action name="cancelBorrow"
+			class="com.cubesofttech.action.BorrowingAction" method="cancelBorrow">
+		</action>
+		<!-- test -->
+		<action name="workHourSummary"
+			class="com.cubesofttech.action.WorkHoursAction"
+			method="workHourSummary">
+			<result name="success" type="tiles">work.hour.summary</result>
+			<result name="error">/index.jsp</result>
+		</action>
+	<!-- testaction -->
+		<action name="workHoursSummary"
+			class="com.cubesofttech.action.WorkHoursAction" method="workHoursSummary">
+			<result name="success" type="tiles">Work_Hours_Summary</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="searchWorkHourSummary"
+			class="com.cubesofttech.action.WorkHoursAction" method="searchWorkHourSummary">
+			<result name="success" type="tiles">Work_Hours_Summary</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="onlineUserAction"
+			class="com.cubesofttech.action.LoginAction" method="onlineUser">
+			<result name="success" type="tiles">onlineUserTile</result>
+			<result name="error">/index.jsp</result>
+		</action>
+	
+	<action name="workHoursSummary1"
+			class="com.cubesofttech.action.WorkHoursAction" method="workHoursSummary1">
+			<result name="success" type="tiles">Work_Hours_Summary1</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchWorkHourSummary1"
+			class="com.cubesofttech.action.WorkHoursAction" method="searchWorkHourSummary1">
+			<result name="success" type="tiles">Work_Hours_Summary1</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="workHoursSummary2"
+class="com.cubesofttech.action.WorkHoursAction" method="workHoursSummary2">
+<result name="success" type="tiles">Work_Hours_Summary2</result>
+<result name="error">/index.jsp</result>
+</action>
+<action name="searchWorkHourSummary2"
+class="com.cubesofttech.action.WorkHoursAction" method="searchWorkHourSummary2">
+<result name="success" type="tiles">Work_Hours_Summary2</result>
+<result name="error">/index.jsp</result>
+</action>
+<action name="YtdLeaveSummary"
+class="com.cubesofttech.action.LeaveAction" method="ytdLeaveSummary">
+<result name="success" type="tiles">YTD_leave_summary</result>
+<result name="error">/index.jsp</result>
+</action>
+	
+	<action name="TravelSummary"
+class="com.cubesofttech.action.ExpenseAction" method="TravelSummary">
+<result name="success" type="tiles">Travel_Summary</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="SearchTravelSummary"
+class="com.cubesofttech.action.ExpenseAction" method="SearchTravelSummary">
+<result name="success" type="tiles">Travel_Summary</result>
+<result name="error">/index.jsp</result>
+</action>
+
+
+<action name="BirthdaySummary"
+class="com.cubesofttech.action.UserAction" method="BirthdaySummary">
+<result name="success" type="tiles">Birthday_Summary</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="SearchBirthdaySummary"
+class="com.cubesofttech.action.UserAction" method="SearchBirthdaySummary">
+<result name="success" type="tiles">Birthday_Summary</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="workHoursAnniversary"
+class="com.cubesofttech.action.WorkHoursAction" method="workHoursAnniversary">
+<result name="success" type="tiles">ytd_anniversary1</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="workHoursSelectMonth"
+class="com.cubesofttech.action.WorkHoursAction" method="workHoursSelectMonth">
+<result name="success" type="tiles">last_work_hour_selected</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="searchworkHoursSelectMonth"
+class="com.cubesofttech.action.WorkHoursAction" method="searchworkHoursSelectMonth">
+<result name="success" type="tiles">last_work_hour_selected</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="searchLeaveSummary"
+class="com.cubesofttech.action.LeaveAction" method="searchLeaveSummary">
+<result name="success" type="tiles">YTD_leave_summary</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="TravelSelectMonth"
+class="com.cubesofttech.action.ExpenseAction" method="TravelSelectMonth">
+<result name="success" type="tiles">travel_amount</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="searchTravelSelectMonth"
+class="com.cubesofttech.action.ExpenseAction" method="searchTravelSelectMonth">
+<result name="success" type="tiles">travel_amount</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="LeaveSelectMonth"
+class="com.cubesofttech.action.LeaveAction" method="LeaveSelectMonth">
+<result name="success" type="tiles">leave_SelectMonth</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="searchLeaveSelectMonth"
+class="com.cubesofttech.action.LeaveAction" method="searchLeaveSelectMonth">
+<result name="success" type="tiles">leave_SelectMonth</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="user-list2"
+class="com.cubesofttech.action.UserAction" method="list2">
+<result name="success" type="tiles">user.list2</result>
+<result name="error">/index.jsp</result>
+</action>
+		
+<action name="update-gender"
+class="com.cubesofttech.action.UserAction" method="updateGender">
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="holiday_list2"
+class="com.cubesofttech.action.HolidayAction" method="List">
+<result name="success" type="tiles">holiday_newlist2</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="SearchHoliday2"
+class="com.cubesofttech.action.HolidayAction" method="searchtable">
+<result name="success" type="tiles">holiday_newlist2</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="HolidayReport"
+class="com.cubesofttech.action.ReportAction" method="HolidayReport">
+</action>
+
+<action name="checkListReport"
+class="com.cubesofttech.action.ReportAction" method="checkListReport">
+</action>
+
+<action name="todayLogin"
+class="com.cubesofttech.action.WorkHoursAction" method="todayLogin">
+<result name="success" type="tiles">today_login</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="todayLoginJson"
+class="com.cubesofttech.action.WorkHoursAction" method="todayLoginJson">
+<result name="success" type="tiles">today_login</result>
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+		
+<action name="leave_approved_edit_dashboard"
+class="com.cubesofttech.action.LeaveAction" method="searchShowDashboard">
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+		
+<action name="leave_approved_edit_quota"
+class="com.cubesofttech.action.LeaveAction" method="searchShowDashboardQuota">
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+		
+<action name="leave_update_status"
+class="com.cubesofttech.action.LeaveAction" method="leaveUpdateStatus">
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+		
+<action name="userReport"
+class="com.cubesofttech.action.ReportAction" method="userReport">
+</action>
+
+<action name="leave_approved_edit"
+class="com.cubesofttech.action.LeaveAction" method="list">
+<result name="success" type="tiles">leave_approved_edit</result>
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="leave_approved_edit_json"
+class="com.cubesofttech.action.LeaveAction" method="searchList_edit">
+<result name="json">/pages-back/common/json.jsp</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="tableE2"
+class="com.cubesofttech.action.EquipmentAction" method="table">
+<result name="success" type="tiles">EquipmentTable2</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="borrower-list"
+class="com.cubesofttech.action.BorrowAction" method="listBorrower">
+<result name="success" type="tiles">borrow.list</result>
+<result name="error">/index.jsp</result>
+</action>
+
+<action name="user-list-test"
+	class="com.cubesofttech.action.UserAction" method="list">
+	<result name="success" type="tiles">user.list.test</result>
+	<result name="error">/index.jsp</result>
+</action>
+
+	</package>
+</struts>
