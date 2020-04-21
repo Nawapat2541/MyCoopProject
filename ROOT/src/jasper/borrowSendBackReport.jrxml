@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="borrowSendBackReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd147bb-4255-4a3b-8b5a-c2f54dec0fc3">
+	<property name="ireport.zoom" value="1.399522140629204"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="256"/>
+	<parameter name="borrowId" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Amanic\\workspace\\ROOT\\src\\main\\resources\\jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  b.date_start, b.date_end, b.contact_addr, b.location, b.reason,
+        u.name AS borrower_name , p.name AS borrower_pos,
+        eq.item_no, eq.name as nb_name , eq.process, eq.note, eq.type,
+        eq.windows, eq.status, eq.serial_no, eq.battery,
+        eq.hdd, eq.amount, eq.detail, eq.image, eq.location, eq.ram,b.remark,
+        floor((datediff(b.date_end,b.date_start))/30 )as date_diff
+FROM borrow b
+INNER JOIN USER u ON b.user_borrowid = u.id
+LEFT JOIN position p ON p.position_id = u.position_id
+INNER JOIN equipment eq ON eq.equipment_id = b.equipment_id
+WHERE b.borrow_id = $P{borrowId}]]>
+	</queryString>
+	<field name="date_start" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_end" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contact_addr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="location" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reason" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="borrower_name" class="java.lang.String"/>
+	<field name="borrower_pos" class="java.lang.String"/>
+	<field name="item_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nb_name" class="java.lang.String"/>
+	<field name="process" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="note" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="windows" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="battery" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hdd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detail" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="image" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ram" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="remark" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_diff" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="164" splitType="Stretch">
+			<staticText>
+				<reportElement x="346" y="138" width="35" height="20" uuid="51ce0136-b9a0-4bef-8164-f1d4632236e2"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[ตำแหน่ง]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="103" width="31" height="20" uuid="845b6a6f-0d0f-4493-b9a2-e1e13e4b2a3b"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[วันที่]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="81" width="555" height="22" uuid="f297f229-1db1-4e52-aad6-920d8cf51467"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="false" isUnderline="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ใบคืนอุปกรณ์และข้อมูล]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="15" width="146" height="40" uuid="b6555020-345a-49ea-b2d7-c524dc5591d3"/>
+				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="437" y="103" width="100" height="20" uuid="dab1a487-53e0-44bc-acca-20c8349ef308"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="138" width="245" height="20" uuid="787402cb-b94f-4054-9e9f-b88fc775bede"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrower_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="138" width="90" height="20" uuid="a5784671-93c2-4cac-82bb-413e82fa4249"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[ชื่อ - นามสกุล]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="138" width="172" height="20" uuid="b1d34348-df4c-4afd-afa3-186db8cc6230"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrower_pos}!=null&&!"".equals($F{borrower_pos})?$F{borrower_pos}:"............................................................................."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="448" y="2" width="33" height="16" forecolor="#FF0000" uuid="ad6cf05b-9f5a-4df5-9514-e7ad0ac4f359"/>
+				<textElement>
+					<font fontName="Tahoma" size="12" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Cube]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="49" width="11" height="17" forecolor="#FF0000" uuid="ad6cf05b-9f5a-4df5-9514-e7ad0ac4f359"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[M]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="49" width="62" height="17" forecolor="#000000" uuid="6d2b8997-528c-45c9-ac89-59b8f622cb21"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[(+66)2679 8855]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="49" width="74" height="17" forecolor="#000000" uuid="6d2b8997-528c-45c9-ac89-59b8f622cb21"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[(+66)88022 9400-1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="49" width="11" height="17" forecolor="#FF0000" uuid="ad6cf05b-9f5a-4df5-9514-e7ad0ac4f359"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[T]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="0" width="352" height="50" forecolor="#000000" uuid="6d2b8997-528c-45c9-ac89-59b8f622cb21"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[ SoftTech Co., Ltd.
+160/170-2, 12A Fl., ITF Silom Palace Building
+Silom Rd. Suriyawong, Bangrak, Bangkok 10500, Thailand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="49" width="95" height="17" forecolor="#000000" uuid="6d2b8997-528c-45c9-ac89-59b8f622cb21"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[www.cubesofttech.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="49" width="12" height="17" forecolor="#FF0000" uuid="ad6cf05b-9f5a-4df5-9514-e7ad0ac4f359"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="13" isBold="true" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[W]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="20" uuid="52e680e3-ebda-4d19-a572-3c7b6c330af3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="0" width="100" height="20" uuid="5008b0a8-caef-4a55-afba-4ee4d1af9faa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Item No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="0" width="116" height="20" uuid="bc82975b-efb3-4e09-945c-9119bb42cbfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="45" y="0" width="1" height="19" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="338" y="0" width="1" height="19" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="439" y="1" width="1" height="19" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="19" uuid="c77259e1-79c2-4ed2-b024-3c89e80351ea"/>
+			</line>
+			<staticText>
+				<reportElement x="46" y="0" width="293" height="20" uuid="23731539-0cb3-4a0a-a866-ecc8be472b27"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="325" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="273" width="554" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<staticText>
+				<reportElement x="287" y="296" width="73" height="25" uuid="ea79a85f-43bf-4867-8255-312970369dbc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วันที่รับคืน]]></text>
+			</staticText>
+			<line>
+				<reportElement x="45" y="-1" width="1" height="112" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<line>
+				<reportElement x="1" y="168" width="554" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="274" width="76" height="23" uuid="93db9f89-07b8-4a54-969b-b98fb119bb97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ผู้ส่งคืนอุปกรณ์]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="297" width="60" height="23" uuid="ea79a85f-43bf-4867-8255-312970369dbc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[วันที่ส่งคืน]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="196" width="554" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<staticText>
+				<reportElement x="288" y="274" width="69" height="25" uuid="93db9f89-07b8-4a54-969b-b98fb119bb97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ผู้รับคืนอุปกรณ์]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="297" width="554" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="128" width="56" height="20" uuid="34be95a4-8700-44bc-9d39-5334f0c756e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ตั้งแต่วันที่]]></text>
+			</staticText>
+			<line>
+				<reportElement x="338" y="-1" width="1" height="112" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<staticText>
+				<reportElement x="218" y="128" width="30" height="20" uuid="0b675435-8edb-44ca-978e-661bb56f2020"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ถึงวันที่]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="319" width="555" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="257" y="128" width="169" height="20" uuid="6eb7a7b1-ec62-4c70-8012-6de549c3e86f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_end}!=null?$F{date_end}:"..............................................................."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="172" width="535" height="20" uuid="7dbdf125-3000-4168-a873-a220da8a1f8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ทั้งสองฝ่ายทำการรับมอบและส่งมอบอุปกรณ์ตามรายงานข้างบนเป็นที่เรียบร้อยแล้วในสภาพที่ครบถ้วนทุกประการ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="277" width="187" height="20" uuid="787402cb-b94f-4054-9e9f-b88fc775bede"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrower_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="69" y="128" width="140" height="20" uuid="7ffc1a28-970a-44ab-8758-93caf5c29160"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_start}!=null?$F{date_start}:"............................................................................."]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="111" width="554" height="1" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<line>
+				<reportElement x="0" y="-1" width="1" height="321" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<line>
+				<reportElement x="554" y="-1" width="1" height="320" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<line>
+				<reportElement x="439" y="-1" width="1" height="112" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<line>
+				<reportElement x="274" y="196" width="2" height="124" uuid="a0638b5e-607e-45dc-9beb-e3e176912ed0"/>
+			</line>
+			<textField>
+				<reportElement x="1" y="0" width="45" height="20" uuid="e22b154c-04d9-4ac5-b929-03209a73cc5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="56" y="0" width="280" height="20" uuid="d15e8b15-2234-438d-bf51-24c8c6a98c7a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ส่งคืน Source Code และไฟล์งานที่ได้รับมอบหมาย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="20" width="280" height="20" uuid="d15e8b15-2234-438d-bf51-24c8c6a98c7a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ในโครงการ ................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="207" width="47" height="23" uuid="93db9f89-07b8-4a54-969b-b98fb119bb97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ลงนาม: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="207" width="47" height="23" uuid="93db9f89-07b8-4a54-969b-b98fb119bb97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" pdfFontName="WareeSans.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[ลงนาม: ]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="324" width="100" height="1" uuid="71d47513-1e3f-442e-81ee-03dfb93037d0"/>
+			</break>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,1 @@
+var Lock=function(){return{init:function(){$.backstretch(["../assets/pages/media/bg/11.jpg","../assets/pages/media/bg/12.jpg","../assets/pages/media/bg/13.jpg","../assets/pages/media/bg/14.jpg","../assets/pages/media/bg/15.jpg","../assets/pages/media/bg/16.jpg"],{fade:1e3,duration:8e3})}}}();jQuery(document).ready(function(){Lock.init()});
